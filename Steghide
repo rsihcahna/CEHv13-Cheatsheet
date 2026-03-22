@@ -1,0 +1,3 @@
+Embed data: steghide embed -cf cvr.jpg -ef emb.txt
+Extract data: steghide extract -sf stg.jpg
+Extract with passphrase: steghide extract -sf stg.jpg -p <passphrase here>
