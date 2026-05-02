@@ -7,3 +7,8 @@ nmap -sS -Pn -T1 -f --data-length 200 --randomize-hosts <IP> --> Remove -Pn to r
 
 Save as much data as needed into files so you can revisit later (very useful) 
 -oN/-oX/-oS/-oG <file>: Output scan in normal, XML, s|<rIpt kIddi3, and Grepable format, respectively, to the given filename.
+
+
+
+
+find / -type f -name "*.apk" 2>/dev/null
