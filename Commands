@@ -9,6 +9,22 @@ Save as much data as needed into files so you can revisit later (very useful)
 -oN/-oX/-oS/-oG <file>: Output scan in normal, XML, s|<rIpt kIddi3, and Grepable format, respectively, to the given filename.
 
 
+tcpdump -nn -r ~/Downloads/ServerDoS.pcapng 'udp' | awk '{print $5}' | cut -d. -f1-4 | sort | uniq -c | sort -nr | head -n 10
+tshark -r ~/Downloads/PyD_attack.pcapng -Y "rpc" -T fields -e ip.src | sort | uniq -c | sort -nr
+tshark -r ~/MQTT.pcapng -Y 'mqtt' -T fields -e mqtt.msg --> grep -i "text"
+tshark -r ~/Documents/And_Dos.pcapng -q -z expert
 
+
+
+sha256sum ~/Downloads/Tools.rar
+
+ent ~/Downloads/Tornado.elf
 
 find / -type f -name "*.apk" 2>/dev/null
+
+steghide extract -sf ~/Desktop/stealth.jpeg
+
+
+
+
+cat ~/Documents/cryt-128-06encr.hex  --> xxd -r -p ~/Documents/cryt-128-06encr.hex > output.bin --> file output.bin --> openssl enc -aes-128-cbc -d -in output.bin
