@@ -136,3 +136,7 @@ Get-NetSPN - Lists service principal names (SPNs) in the domain.
 Invoke-ShareFinder - Finds shared folders in the domain.
 Invoke-UserHunter - Finds where domain admins are logged in.
 Invoke-CheckLocalAdminAccess - Checks if the current user has local admin access on specified machines.
+
+
+
+
